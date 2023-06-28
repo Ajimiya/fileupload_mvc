@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "FileUploader";
+}
+
+<h2>File Upload</h2>
+
+@using (Html.BeginForm("Upload", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="file">Select File:</label>
+        <input type="file" id="file" name="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+
+    if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.ErrorMessage</div>
+    }
+}
